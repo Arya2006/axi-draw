@@ -1,3 +1,9 @@
+#include <Servo.h>
+Servo pen;
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27,20,4);
+
 int Xstep = 2;
 int Ystep = 3;
 int Ydir = 6;
@@ -17,14 +23,9 @@ int lcd_y;
 int current_angle = 0;
 
 
-#include <Servo.h>
-Servo pen;
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
-LiquidCrystal_I2C lcd(0x27,20,4);
  
 
-void homing_xy (){
+void homing_xy () {
   Serial.println("homing sequence");
   int y_sensorVal = digitalRead(10); 
   while(y_sensorVal == HIGH){
@@ -108,7 +109,7 @@ int Y_axis(int y){
       lcd_y = lcd_y + y;
       int b = 0;
       if(y>0){
-          Serial.println("positive");
+          Serial.println("posive");
           digitalWrite(ena,LOW);
           digitalWrite(Xdir,HIGH);
           digitalWrite(Ydir,LOW);
