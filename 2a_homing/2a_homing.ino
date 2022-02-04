@@ -30,7 +30,7 @@ void homing_xy () {
   while(y_sensorVal == HIGH){
 
     digitalWrite(ena,LOW);
-    digitalWrite(Xdir,LOW);
+    digitalWrite(Xdir,HIGH);
     digitalWrite(Ydir,HIGH);
 
     digitalWrite(Xstep,HIGH);
@@ -42,13 +42,13 @@ void homing_xy () {
     
     y_sensorVal = digitalRead(10);    
   }
-  delay(50);
+  delay(10);
   int x_sensorVal = digitalRead(9); 
   while(x_sensorVal == HIGH){
 
     digitalWrite(ena,LOW);
     digitalWrite(Xdir,HIGH);
-    digitalWrite(Ydir,HIGH);
+    digitalWrite(Ydir,LOW);
     
     digitalWrite(Xstep,HIGH);
     digitalWrite(Ystep,HIGH);
@@ -212,21 +212,9 @@ void  setup() {
   lcd.init();
   lcd.backlight();
   lcd.print("online");
-  delay(200);
-  lcd.clear();
   //homing_xy();
-  X_axis(-700);
-  X_axis(700);
-  X_axis(-700);
-  delay(100);
-  Y_axis(500);
-  delay(100);
-  Y_axis(-500);
-  delay(100);
-  Y_axis(-500);
-
-//cordinate_xy(100,1);
-   //pen_tool(45);
+  //cordinate_xy(100,1);
+  //pen_tool(45);
 } 
 
 
