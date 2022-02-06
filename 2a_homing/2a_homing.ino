@@ -1,9 +1,11 @@
+//library
 #include <Servo.h>
 Servo pen;
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27,20,4);
 
+//general variable 
 int Xstep = 2;
 int Ystep = 3;
 int Ydir = 6;
@@ -14,16 +16,10 @@ int speed = 500;
 int i = 0;
 int x_speed = 10;
 int y_speed = 10;
-int kx;
-int ky;
-int k;
-int c;
-int lcd_x;
-int lcd_y;
+int kx ,ky ,k ,c ,lcd_x ,lcd_y;
 int current_angle = 0;
 
-
- 
+//calibration
 void homing_xy () {
   Serial.println("homing sequence");
   int y_sensorVal = digitalRead(10); 
@@ -62,6 +58,7 @@ void homing_xy () {
   digitalWrite(ena,HIGH);
 }
 
+//x axis control
 int X_axis(int x){
   int x_sensorVal = digitalRead(9);
   lcd_x = lcd_x + x;
@@ -92,13 +89,13 @@ int X_axis(int x){
   }    
 }
 
-
+//y axis control
 int Y_axis(int y){
   int y_sensorVal = digitalRead(10);
   lcd_y = lcd_y + y;
   int b = 0;
   if(y>0){
-    Serial.println("posive");
+    Serial.println("postive");
     digitalWrite(ena,LOW);
     digitalWrite(Xdir,HIGH);
     digitalWrite(Ydir,LOW);
@@ -124,21 +121,20 @@ int Y_axis(int y){
   Serial.println(y);
 }
 
-
+//to control display
 void LCD(){
-  lcd.setCursor(1,1);
+  lcd.clear();
+  lcd.setCursor(1,0);
   lcd.print("X");
-  lcd.setCursor(1,2);
+  lcd.setCursor(2,0);
   lcd.print(lcd_x);
-  lcd.setCursor(2,1);
+  lcd.setCursor(1,1);
   lcd.print("Y");
-  lcd.setCursor(2,2);
+  lcd.setCursor(2,1);
   lcd.print(lcd_y);
-  
 }
 
-
-
+//doesnt work
 int cordinate_xy (int x, int y){
   if(x > y ){    
     k = x/y;
@@ -190,9 +186,22 @@ int cordinate_xy (int x, int y){
   }
 }
 
-int pen_tool(int angle){
-  pen.write(angle);
-  
+
+int go_to (){
+
+}
+
+
+//control pen position
+int pen_tool(String state ){
+    if(state == "up"){
+    pen.write(90);
+    Serial.println("up");
+    }
+    else{
+    pen.write(5);
+    Serial.print("down");
+    }  
 }
 
 
@@ -215,6 +224,9 @@ void  setup() {
   //homing_xy();
   //cordinate_xy(100,1);
   //pen_tool(45);
+  Y_axis(80);
+  LCD();
+
 } 
 
 
