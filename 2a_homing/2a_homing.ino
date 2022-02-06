@@ -205,7 +205,7 @@ int pen_tool(String state ){
 }
 
 
-void  setup() {
+void  setup1() {
   //  put your setup code here, to run once:
   
   pinMode(Xstep,OUTPUT);
@@ -237,3 +237,73 @@ void loop() {
  
 }       
                           
+
+class Stepper {
+    int step, dir, default_dir;
+    int s_delay;
+  public:
+    Stepper(int step_pin, int dir_pin, int clock_dir, int step_delay) {
+       /* The clock_dir set  to make it go clock wise */ 
+       step = step_pin;
+       dir = dir_pin;
+       s_delay = step_delay;
+       default_dir = clock_dir;
+       pinMode(step, OUTPUT);
+       pinMode(dir, OUTPUT);
+    }
+
+    int flip(int value) {
+      if (value == HIGH) {
+        return LOW;
+      }
+      return HIGH;
+    }
+
+    void clock(int steps) {
+      /* positive number to step in clock direction. 
+      *  Negative number to step in anti-clock direction. */
+      int dir_value = LOW;
+      if (default_dir) {
+        dir_value = HIGH;
+      }
+      if (steps < 0) {
+        /* flip direction if anti-clock */
+        steps = -1 * steps;
+        dir_value = flip(dir_value);
+      }
+      digitalWrite(dir, dir_value);
+      for (int s= 0; s < steps; s++) {
+        digitalWrite(step, HIGH);
+        delayMicroseconds(s_delay);
+        digitalWrite(step, LOW);
+        delayMicroseconds(s_delay);
+      }
+    }
+};
+
+class AxiDraw {
+  int x,y;
+  Stepper &motorL;
+  Stepper &motorR;
+  int enable;
+  public:
+    AxiDraw(int enable_pin, Stepper &s_motorL, Stepper &s_motorR) :
+      motorL(s_motorL), motorR(s_motorR), enable(enable_pin) {
+
+      }
+};
+
+void setup() {
+  pinMode(ena,OUTPUT);
+  digitalWrite(ena, LOW);
+  lcd.init();
+  lcd.backlight();
+  lcd.print("online");
+  LCD();
+  Stepper sright(Xstep, Xdir, HIGH, x_speed);
+  lcd.print("Doing stepper");
+  sright.clock(100);
+  lcd.clear();
+  lcd.print("Done stepper");
+  
+}
