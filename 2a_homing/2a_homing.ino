@@ -293,17 +293,47 @@ class AxiDraw {
       }
 };
 
+class motor {
+  int dir,step,FLIP;
+  public:
+    motor(int dir_pin, int step_pin, int speed, int flip) {
+      dir = dir_pin ; 
+      step = step_pin ;
+      pinMode(step,OUTPUT);
+      pinMode(dir,OUTPUT);
+      FLIP = flip;
+    }
+    
+    void stepper(int steps){
+      steps = steps * FLIP;
+      if(steps > 0){
+        digitalWrite(dir,HIGH);
+        Serial.println("pos");
+      }
+      else{
+        digitalWrite(dir,LOW);
+        Serial.println("neg");
+        steps = steps * -1;
+      }
+      for(int i;steps > i;i++ ){
+        digitalWrite(step,HIGH);
+        delayMicroseconds(speed);
+        digitalWrite(step,LOW);
+        delayMicroseconds(speed);
+      }
+    }
+
+
+
+};
+
+
 void setup() {
   pinMode(ena,OUTPUT);
-  digitalWrite(ena, LOW);
-  lcd.init();
-  lcd.backlight();
-  lcd.print("online");
-  LCD();
-  Stepper sright(Xstep, Xdir, HIGH, x_speed);
-  lcd.print("Doing stepper");
-  sright.clock(100);
-  lcd.clear();
-  lcd.print("Done stepper");
+  digitalWrite(ena,LOW);
+  motor l (5,2,500,-1);
+  l.stepper(1000);
+
+  
   
 }
