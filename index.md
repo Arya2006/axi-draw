@@ -27,7 +27,9 @@ and arduino as 12v is a voltage rating used by  `
 ## Pen holder mechanism
 
 ![Pen Holder Failed versions](images/Pen-Holder-Failed.jpg)
-
+one
+![Pen Holder Failed versions](images/Pen-Holder-Failed-2.jpg)
+Both the above mechanism fail
 ## Version 2
 
 ## Version 3
