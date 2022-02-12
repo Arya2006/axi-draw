@@ -1,37 +1,31 @@
-## Welcome to GitHub Pages
+## AXI Draw by Arya Mitra
 
-You can use the [editor on GitHub](https://github.com/Arya2006/axi-draw/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This is my attempt at creating an AXI Draw clone. Here I document my various version and iteration of the hardware and software.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# Hardware
 
-### Markdown
+## Version 1
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Version 2
 
-```markdown
-Syntax highlighted code block
+## Version 3
 
-# Header 1
-## Header 2
-### Header 3
+# Software
 
-- Bulleted
-- List
+## Stepper
 
-1. Numbered
-2. List
+## Stepper
 
-**Bold** and _Italic_ and `Code` text
+## Servo
 
-[Link](url) and ![Image](src)
-```
+## LCD
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+## Cartesian plane
 
-### Jekyll Themes
+# Electronics
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Arya2006/axi-draw/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## Prototype
 
-### Support or Contact
+## Tools
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Final
