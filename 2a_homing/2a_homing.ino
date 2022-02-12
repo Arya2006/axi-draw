@@ -89,37 +89,7 @@ int X_axis(int x){
   }    
 }
 
-//y axis control
-int Y_axis(int y){
-  int y_sensorVal = digitalRead(10);
-  lcd_y = lcd_y + y;
-  int b = 0;
-  if(y>0){
-    Serial.println("postive");
-    digitalWrite(ena,LOW);
-    digitalWrite(Xdir,HIGH);
-    digitalWrite(Ydir,LOW);
-  }
-  else{
-    Serial.println("negative");
-    digitalWrite(ena,LOW);
-    digitalWrite(Xdir,LOW);
-    digitalWrite(Ydir,HIGH);
-    y = y * -1;
-      
-  }
-  
-  while( b < y){
-    digitalWrite(Xstep,HIGH);
-    digitalWrite(Ystep,HIGH);
-    delayMicroseconds(speed);
-    digitalWrite(Xstep,LOW);
-    digitalWrite(Ystep,LOW );
-    delayMicroseconds(speed);
-    b++;
-  }
-  Serial.println(y);
-}
+
 
 //to control display
 void LCD(){
@@ -216,7 +186,7 @@ void  setup1() {
   pinMode(10,INPUT_PULLUP);
   pinMode(9,INPUT_PULLUP);
   pinMode(ena,OUTPUT);
-  Serial.begin(115200);
+  Serial.begin(9600);
   digitalWrite(ena,HIGH);
   lcd.init();
   lcd.backlight();
@@ -322,18 +292,43 @@ class motor {
         delayMicroseconds(speed);
       }
     }
-
-
-
 };
+
+//y axis control
+int Y_axis(int y){
+  motor S1(5,2,450,1);
+  motor S2(6,3,450,1);
+  if(y > 0){
+    S1.stepper(y);
+    S2.stepper(y);
+  }
+  else{
+    S1.stepper(y);
+    S2.stepper(y);
+  }
+}
+
+//x axis control
+int X_axis(int x){
+  motor S1(5,2,450,1);
+  motor S2(6,3,450,1);
+  if(y > 0){
+    S1.stepper(x);
+    S2.stepper(x * -1);
+  }
+  else{
+    S1.stepper(x * -1);
+    S2.stepper(x);
+  }
+}
+
+//cartesian plane positioning
 
 
 void setup() {
   pinMode(ena,OUTPUT);
   digitalWrite(ena,LOW);
-  motor l (5,2,500,-1);
-  l.stepper(1000);
-
-  
+  Y_axis(300);
+  X_axis(200);
   
 }
