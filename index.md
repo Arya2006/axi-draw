@@ -16,12 +16,17 @@ Electronis consists of
 1. PCF8574? (lcd I2C expander)
 
 I am using a 12v 2amp power supply to power the cnc sheild 
-and arduino as 12v is a voltage rating used by  
+and arduino as 12v is a voltage rating used by  `
 
 # Hardware
 
 
+
 ## Version 1
+
+## Pen holder mechanism
+
+![Pen Holder Failed versions](images/Pen-Holder-Failed.jpg)
 
 ## Version 2
 
