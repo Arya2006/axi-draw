@@ -27,9 +27,14 @@ and arduino as 12v is a voltage rating used by  `
 ## Pen holder mechanism
 
 ![Pen Holder Failed versions](images/Pen-Holder-Failed.jpg)
-one
+Tolerance for shafts were low as the shafts were 3d printed,
+this caused the pen to rotate a large amount.
+
 ![Pen Holder Failed versions](images/Pen-Holder-Failed-2.jpg)
-Both the above mechanism fail
+metal shafts were used with 0.15 tolerance used for the 
+3d printed parts thus removing the large rotation.
+but due to the overall design of the assembly the mechanism
+would bind and cause the servo to stall. 
 ## Version 2
 
 ## Version 3
