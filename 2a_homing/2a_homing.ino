@@ -163,15 +163,8 @@ int go_to (){
 
 
 //control pen position
-int pen_tool(String state ){
-    if(state == "up"){
-    pen.write(90);
-    Serial.println("up");
-    }
-    else{
-    pen.write(5);
-    Serial.print("down");
-    }  
+int pen_tool(int angle){
+  
 }
 
 
@@ -309,10 +302,10 @@ int Y_axis(int y){
 }
 
 //x axis control
-int X_axis(int x){
+int x_axis(int x){
   motor S1(5,2,450,1);
   motor S2(6,3,450,1);
-  if(y > 0){
+  if(x > 0){
     S1.stepper(x);
     S2.stepper(x * -1);
   }
@@ -326,9 +319,13 @@ int X_axis(int x){
 
 
 void setup() {
+  pen.attach(11);
+  pen.write(90);
+  //delay(20);
+  //pen.write(40);
   pinMode(ena,OUTPUT);
-  digitalWrite(ena,LOW);
+  digitalWrite(ena,HIGH);
   Y_axis(300);
-  X_axis(200);
+  x_axis(200);
   
 }
