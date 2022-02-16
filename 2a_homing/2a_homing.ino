@@ -288,9 +288,10 @@ class motor {
 };
 
 //y axis control
-int Y_axis(int y){
+int y_axis(int y){
   motor S1(5,2,450,1);
   motor S2(6,3,450,1);
+  Serial.println("y_axis init");
   if(y > 0){
     S1.stepper(y);
     S2.stepper(y);
@@ -299,12 +300,14 @@ int Y_axis(int y){
     S1.stepper(y);
     S2.stepper(y);
   }
+  Serial.println("y_axis end");
 }
 
 //x axis control
 int x_axis(int x){
   motor S1(5,2,450,1);
   motor S2(6,3,450,1);
+  Serial.println("x_axis init");
   if(x > 0){
     S1.stepper(x);
     S2.stepper(x * -1);
@@ -313,6 +316,7 @@ int x_axis(int x){
     S1.stepper(x * -1);
     S2.stepper(x);
   }
+  Serial.println("x_axis end");
 }
 
 //cartesian plane positioning
@@ -321,11 +325,9 @@ int x_axis(int x){
 void setup() {
   pen.attach(11);
   pen.write(90);
-  //delay(20);
-  //pen.write(40);
   pinMode(ena,OUTPUT);
-  digitalWrite(ena,HIGH);
+  digitalWrite(ena,LOW);
   Y_axis(300);
-  x_axis(200);
+  x_axis(400);
   
 }
